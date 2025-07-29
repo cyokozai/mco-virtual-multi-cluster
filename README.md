@@ -1,74 +1,22 @@
-# git-template
+# 🚢 Karmada + vCluster で実現する仮想的なマルチクラスタ運用環境
 
-Git template with GitHub Actions workflows
+## はじめに
 
-## 概要
+近年、複数の Kubernetes クラスタを運用するためのベストプラクティスが話題となり、それに伴う形で MCO (Multi-cluster Orchestrator) をはじめとしたマルチクラスタオーケストレーションツールが登場している。  
+代表的なツールとして以下のものがある。  
 
-このリポジトリは、新しいプロジェクトを始める際のテンプレートとして使用できます。包括的なGitHub Actionsワークフローとプロジェクト設定が含まれています。
+   - [Karmada](https://karmada.io/)
+   - [kro](https://kro.run/)
+   - [GKE Multi-cluster Orchestrator](https://cloud.google.com/blog/products/containers-kubernetes/multi-cluster-orchestrator-for-cross-region-kubernetes-workloads?hl=en)
 
-## 含まれている機能
+## Karmada
 
-### GitHub Actions ワークフロー
+### Karmada とは？
 
-#### 1. CI/CD Pipeline (`sample.yaml`)
+![karmada-component](https://karmada.io/assets/images/components-9bbbf90a2242f49a418e53615f1b18be.png)
 
-- **リント・フォーマットチェック**: ESLint、Prettierによるコード品質チェック
-- **テスト実行**: 複数のNode.jsバージョンでのテスト実行
-- **セキュリティスキャン**: Trivyによる脆弱性スキャン
-- **Dockerイメージビルド**: GitHub Container Registryへのプッシュ
-- **デプロイメント**: ステージング・本番環境への自動デプロイ
-- **リリース作成**: 自動的なリリースノート生成
+## vCluster
 
-#### 2. 依存関係更新 (`dependency-update.yaml`)
+### vCluster とは？
 
-- 週次での依存関係自動更新
-- 自動PR作成による更新管理
-
-#### 3. コード品質チェック (`code-quality.yaml`)
-
-- SonarQubeによる静的コード解析
-- TypeScript型チェック
-- Lighthouse CI によるパフォーマンステスト
-- Bundle sizeチェック
-
-### プロジェクト管理
-
-#### イシューテンプレート
-
-- **Bug Report**: バグ報告用のテンプレート
-- **Feature Request**: 新機能提案用のテンプレート
-
-#### PR テンプレート
-
-- 標準化されたプルリクエストテンプレート
-- チェックリスト付きレビュープロセス
-
-#### Dependabot設定
-
-- npm、GitHub Actions、Docker依存関係の自動更新
-- 日本時間での週次更新スケジュール
-
-## 使用方法
-
-1. このテンプレートを使用して新しいリポジトリを作成
-2. プロジェクトの要件に応じてワークフローをカスタマイズ
-3. 必要なシークレットを GitHub Settings で設定:
-   - `SONAR_TOKEN`: SonarQubeトークン
-   - `CC_TEST_REPORTER_ID`: CodeClimate テストレポーターID
-   - `LHCI_GITHUB_APP_TOKEN`: Lighthouse CI トークン
-
-## カスタマイズ
-
-各ワークフローファイルは、プロジェクトの要件に応じてカスタマイズできます：
-
-- Node.js バージョンの変更
-- テストコマンドの調整
-- デプロイ先の設定
-- 通知設定の追加
-
-## 注意事項
-
-- 一部のワークフローは外部サービス（SonarQube、CodeClimate等）の設定が必要です
-- プロジェクトの性質に応じて不要なワークフローは削除してください
-- シークレットの設定を忘れずに行ってください
-- 使用したい機能のyamlファイルについて、各自`.deny`を取り除いた上で使用してください
+![vcluster-component](https://www.vcluster.com/docs/assets/images/vcluster-architecture-ed041d884918b68c3aa11a6d3d65224c.png)
