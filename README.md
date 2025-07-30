@@ -9,12 +9,6 @@
     - [kro](https://kro.run/)
     - [GKE Multi-cluster Orchestrator](https://cloud.google.com/blog/products/containers-kubernetes/multi-cluster-orchestrator-for-cross-region-kubernetes-workloads?hl=en)
 
-## Karmada
-
-### Karmada とは？
-
-![karmada-component](https://karmada.io/assets/images/components-9bbbf90a2242f49a418e53615f1b18be.png)
-
 ## vCluster
 
 ### vCluster とは？
@@ -73,7 +67,7 @@
     vcluster delete {{ cluster-name }} --namespace {{ namespace }}
     ```
 
-## 検証
+## 検証 vCluster
 
 ### kind クラスタを作成する
 
@@ -88,16 +82,39 @@
 
     ```shell
     $ kubectl get nodes
-    NAME                 STATUS     ROLES           AGE   VERSION
-    kind-control-plane   NotReady   control-plane   70s   v1.33.1
-    kind-worker          NotReady   <none>          60s   v1.33.1
-    kind-worker2         NotReady   <none>          60s   v1.33.1
+    NAME                 STATUS   ROLES           AGE   VERSION
+    kind-control-plane   Ready    control-plane   70s   v1.33.1
+    kind-worker          Ready    <none>          60s   v1.33.1
+    kind-worker2         Ready    <none>          60s   v1.33.1
     ```
 
 ### vCluster をデプロイする
 
+- kubectl コマンドで現在のクラスタのコンテキストを取得する
+
+    ```shell
+    $ kubectl config current-context
+    kind-kind
+   ```
+
+- 仮想クラスタ用の namespace を作成する
+
+    ```shell
+    kubectl create namespace test-cluster
+    ```
+
 - vCluster を kind で作成した Kubernetes クラスタにデプロイする
 
     ```shell
-    vcluster create my-vcluster --namespace team-x --values vcluster.yaml
+    vcluster create test-vcluster --namespace test-cluster --values vcluster.yaml
     ```
+
+## Karmada
+
+### Karmada とは？
+
+![karmada-component](https://karmada.io/assets/images/components-9bbbf90a2242f49a418e53615f1b18be.png)
+
+## 検証 Karmada
+
+### kind クラスタを作成する
