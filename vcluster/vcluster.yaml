@@ -1,0 +1,14 @@
+---
+sync:
+  fromHost:
+    ingressClasses:
+      enabled: true
+  toHost:
+    ingresses:
+      enabled: true
+exportKubeConfig:
+  context: test-domain-context
+  server: https://test-domain.org
+  secret:
+    namespace: kubeconfig-secret-namespace
+    name: vc-test-domain
