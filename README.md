@@ -95,7 +95,7 @@
     ```shell
     $ kubectl config current-context
     kind-kind
-   ```
+    ```
 
 - 仮想クラスタ用の namespace を作成する
 
